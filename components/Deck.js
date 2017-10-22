@@ -35,10 +35,12 @@ const styles = StyleSheet.create({
   deckTitle: {
     fontSize: 36,
     color: blue,
+    textAlign: 'center',
   },
   deckCardsNumber: {
     fontSize: 24,
     color: grey,
+    textAlign: 'center',
   },
 })
 
