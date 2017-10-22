@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
 import { Text, View, Platform, StatusBar } from 'react-native';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
@@ -6,6 +8,8 @@ import { Constants } from 'expo';
 import Decks from './components/Decks';
 import NewDeck from './components/NewDeck';
 import { blue, white, shadow } from './utils/colors';
+import { reducer } from './reducers';
+import configureStore from './store';
 
 function DecksStatusBar ({backgroundColor, ...props}) {
   return (
@@ -59,13 +63,48 @@ const MainNavigator = StackNavigator({
   },
 });
 
+const initialState = {
+  decksIds: [
+    'React',
+    'JavaScript',
+  ],
+  decks: {
+    React: {
+      title: 'React',
+      questions: [
+        {
+          question: 'What is React?',
+          answer: 'A library for managing user interfaces'
+        },
+        {
+          question: 'Where do you make Ajax requests in React?',
+          answer: 'The componentDidMount lifecycle event'
+        }
+      ]
+    },
+    JavaScript: {
+      title: 'JavaScript',
+      questions: [
+        {
+          question: 'What is a closure?',
+          answer: 'The combination of a function and the lexical environment within which that function was declared.'
+        }
+      ]
+    },
+  },
+};
+
+const store = configureStore(initialState);
+
 export default class App extends Component {
   render() {
     return (
-      <View style={{flex: 1}}>
-        <DecksStatusBar backgroundColor={blue} barStyle="light-content" />
-        <MainNavigator />
-      </View>
+      <Provider store={store}>
+        <View style={{flex: 1}}>
+          <DecksStatusBar backgroundColor={blue} barStyle="light-content" />
+          <MainNavigator />
+        </View>
+      </Provider>
     );
   }
 }
