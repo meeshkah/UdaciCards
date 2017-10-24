@@ -7,6 +7,7 @@ import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { Constants } from 'expo';
 import Decks from './components/Decks';
 import NewDeck from './components/NewDeck';
+import IndividualDeck from './components/IndividualDeck';
 import { blue, white, shadow } from './utils/colors';
 import { reducer } from './reducers';
 import configureStore from './store';
@@ -61,37 +62,46 @@ const MainNavigator = StackNavigator({
   Home: {
     screen: Tabs,
   },
+  IndividualDeck: {
+    screen: IndividualDeck,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: blue,
+      }
+    }
+  }
 });
 
 const initialState = {
-  decksIds: [
-    'React',
-    'JavaScript',
-  ],
-  decks: {
-    React: {
-      title: 'React',
-      questions: [
-        {
-          question: 'What is React?',
-          answer: 'A library for managing user interfaces'
-        },
-        {
-          question: 'Where do you make Ajax requests in React?',
-          answer: 'The componentDidMount lifecycle event'
-        }
-      ]
-    },
-    JavaScript: {
-      title: 'JavaScript',
-      questions: [
-        {
-          question: 'What is a closure?',
-          answer: 'The combination of a function and the lexical environment within which that function was declared.'
-        }
-      ]
-    },
-  },
+  // decksIds: [
+  //   'React',
+  //   'JavaScript',
+  // ],
+  // decks: {
+  //   React: {
+  //     title: 'React',
+  //     questions: [
+  //       {
+  //         question: 'What is React?',
+  //         answer: 'A library for managing user interfaces'
+  //       },
+  //       {
+  //         question: 'Where do you make Ajax requests in React?',
+  //         answer: 'The componentDidMount lifecycle event'
+  //       }
+  //     ]
+  //   },
+  //   JavaScript: {
+  //     title: 'JavaScript',
+  //     questions: [
+  //       {
+  //         question: 'What is a closure?',
+  //         answer: 'The combination of a function and the lexical environment within which that function was declared.'
+  //       }
+  //     ]
+  //   },
+  // },
 };
 
 const store = configureStore(initialState);

@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Text, View, FlatList } from 'react-native';
+import { 
+  FlatList, 
+  Text, 
+  TouchableOpacity,
+  View, 
+} from 'react-native';
 import Deck from './Deck';
+import { fetchDecks } from '../actions';
 
 class Decks extends Component {
   _keyExtractor = (item) => item;
@@ -10,8 +16,19 @@ class Decks extends Component {
     const { decks } = this.props;
 
     return (
-      <Deck title={decks[item].title} questions={decks[item].questions} />
+      <TouchableOpacity
+        onPress={() => this.props.navigation.navigate(
+          'IndividualDeck',
+          { deckId: item, title: decks[item].title }
+        )}
+      >
+        <Deck title={decks[item].title} questions={decks[item].questions} />
+      </TouchableOpacity>
     );
+  }
+
+  componentDidMount() {
+    this.props.fetchDecks();
   }
 
   render() {
@@ -21,6 +38,7 @@ class Decks extends Component {
       <View style={{flex: 1}}>
         <FlatList 
           data={decksIds}
+          extraData={this.state}
           renderItem={this._renderDeck}
           keyExtractor={this._keyExtractor}
         />
@@ -36,4 +54,6 @@ const mapStateToProps = ({ decksIds, decks }) => {
   }
 };
 
-export default connect(mapStateToProps)(Decks);
+export default connect(mapStateToProps, {
+  fetchDecks,
+})(Decks);

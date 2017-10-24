@@ -4,7 +4,7 @@ import { blue, white, grey, shadow } from '../utils/colors';
 
 const Deck = (props) => {
   const { title, questions } = props;
-  const cardsNumber = questions.length;
+  const cardsNumber = questions ? questions.length : 0;
 
   return (
     <View style={styles.deck}>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { 
   Text, 
   TextInput, 
@@ -9,23 +10,35 @@ import {
 } from 'react-native';
 import Button from './Button';
 import { blue, white, grey } from '../utils/colors';
+import { saveDeckTitle } from '../actions';
 
 class NewDeck extends Component {
   state = {
     title: 'New Deck',
   }
 
+  submitDeckTitle() {
+    const { saveDeckTitle } = this.props;
+
+    saveDeckTitle(this.state.title);
+    this.setState({title: 'New Title'});
+    this.refs.decksInput.blur();
+  }
+
   render() {
+
     return (
       <KeyboardAvoidingView behavior='padding' style={styles.center}>
         <View>
           <Text style={styles.heading}>What is the title of your new deck?</Text>
           <TextInput
+            ref='decksInput'
             style={styles.input}
             onChangeText={(title) => this.setState({title})}
             value={this.state.title}
+            onSubmitEditing={() => this.submitDeckTitle()}
           />
-          <Button onPress={() => console.log('Pressed')}>Submit</Button>
+          <Button onPress={() => this.submitDeckTitle()}>Submit</Button>
         </View>
       </KeyboardAvoidingView>
     )
@@ -56,4 +69,13 @@ const styles = StyleSheet.create({
   }
 });
 
-export default NewDeck;
+const mapStateToProps = ({ decksIds, decks }) => {
+  return {
+    decksIds,
+    decks,
+  }
+};
+
+export default connect(mapStateToProps, {
+  saveDeckTitle,
+})(NewDeck);
