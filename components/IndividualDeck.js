@@ -18,7 +18,7 @@ class IndividualDeck extends Component {
   }
 
   render () {
-    const { deckId, decks } = this.props;
+    const { deckId, decks, quiz } = this.props;
     const deck = decks[deckId];
     const cardsNumber = deck.questions ? deck.questions.length : 0;
 
@@ -36,12 +36,14 @@ class IndividualDeck extends Component {
             )}
             style={{backgroundColor: white, borderColor: blue, borderWidth: 1, color: blue}}
           >Add card</Button>
-          <Button
-            onPress={() => this.props.navigation.navigate(
-              'Quiz',
-              { deckId: deckId, title: decks[deckId].title }
-            )}
-          >Start quiz</Button>
+          {decks[deckId].questions && decks[deckId].questions.length > 0 && (
+            <Button
+              onPress={() => this.props.navigation.navigate(
+                'Quiz',
+                { deckId: deckId, title: decks[deckId].title }
+              )}
+            >{`${quiz.deckId === deckId ? 'Carry on with the' : 'Start the'} quiz`}</Button>
+          )}
         </View>
       </View>
     );
@@ -66,12 +68,13 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = ({ decks }, { navigation }) => {
+const mapStateToProps = ({ decks, quiz }, { navigation }) => {
   const { deckId } = navigation.state.params;
 
   return {
     deckId,
     decks,
+    quiz,
   }
 };
 

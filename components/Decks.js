@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { 
-  FlatList, 
-  Text, 
+import {
+  FlatList,
+  Text,
   TouchableOpacity,
-  View, 
+  View,
 } from 'react-native';
 import Deck from './Deck';
 import { fetchDecks } from '../actions';
@@ -36,7 +36,7 @@ class Decks extends Component {
 
     return (
       <View style={{flex: 1}}>
-        <FlatList 
+        <FlatList
           data={decksIds}
           extraData={decks}
           renderItem={this._renderDeck}

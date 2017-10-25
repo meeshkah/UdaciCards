@@ -41,12 +41,7 @@ const decks = (state = {}, action) => {
 const decksIds = (state = [], action) => {
   switch (action.type) {
     case GET_DECKS:
-      const fetchedDecks = Object.keys(action.payload.decks);
-
-      return [
-        ...state,
-        ...fetchedDecks,
-      ]
+      return Object.keys(action.payload.decks);
     case ADD_DECK:
       return [
         ...state,

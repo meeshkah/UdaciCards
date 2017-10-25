@@ -45,7 +45,7 @@ class Quiz extends Component {
   }
 
   render() {
-    const { quiz, deckId, decks, resetQuiz } = this.props;
+    const { quiz, deckId, decks, startQuiz, resetQuiz } = this.props;
 
     return (
       <View style={{flex: 1}}>
