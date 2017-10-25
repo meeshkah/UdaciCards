@@ -36,7 +36,10 @@ const getDecks = (decks) => {
 export const fetchDecks = () => (dispatch) => {
   return api
     .getDecks()
-    .then((data) => dispatch(getDecks(data)));
+    .then((data) => {
+      const decks = data || {};
+      dispatch(getDecks(decks))
+    });
 };
 
 export const ADD_CARD = 'ADD_CARD';
@@ -55,4 +58,38 @@ export const saveCard = ({deckId, question, answer}) => (dispatch) => {
   return api
     .addCardToDeck({deckId, question, answer})
     .then((deck) => dispatch(addCard(deckId, {question, answer})));
+}
+
+export const RESET_QUIZ = 'RESET_QUIZ';
+
+export const resetQuiz = (deckId = null) => {
+  return {
+    type: RESET_QUIZ,
+    payload: {
+      deckId,
+    },
+  }
+}
+
+export const START_QUIZ = 'START_QUIZ';
+
+export const startQuiz = (deckId) => {
+  return {
+    type: START_QUIZ,
+    payload: {
+      deckId,
+    },
+  }
+}
+
+export const SUBMIT_ANSWER = 'SUBMIT_ANSWER';
+
+export const submitAnswer = ({deckId, isCorrect}) => {
+  return {
+    type: SUBMIT_ANSWER,
+    payload: {
+      deckId,
+      isCorrect,
+    },
+  }
 }

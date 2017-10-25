@@ -9,6 +9,7 @@ import Decks from './components/Decks';
 import NewDeck from './components/NewDeck';
 import IndividualDeck from './components/IndividualDeck';
 import AddCard from './components/AddCard';
+import Quiz from './components/Quiz';
 import { blue, white, shadow } from './utils/colors';
 import { reducer } from './reducers';
 import configureStore from './store';
@@ -37,7 +38,7 @@ const Tabs = TabNavigator(
         tabBarIcon: ({ tintColor }) => <Ionicons name='ios-add-circle' size={20} color={tintColor} />,
       }
     },
-  }, 
+  },
   {
     navigationOptions: {
       header: null
@@ -74,6 +75,15 @@ const MainNavigator = StackNavigator({
   },
   AddCard: {
     screen: AddCard,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: blue,
+      }
+    }
+  },
+  Quiz: {
+    screen: Quiz,
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {

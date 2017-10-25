@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { 
-  Text, 
+import {
+  Text,
   StyleSheet,
   View
 } from 'react-native';
@@ -29,14 +29,19 @@ class IndividualDeck extends Component {
           <Text style={styles.deckCardsNumber}>{`${cardsNumber} card${cardsNumber !== 1 ? 's' : ''}`}</Text>
         </View>
         <View style={[styles.center, {flex: 3}]}>
-          <Button 
+          <Button
             onPress={() => this.props.navigation.navigate(
               'AddCard',
               { deckId: deckId }
             )}
             style={{backgroundColor: white, borderColor: blue, borderWidth: 1, color: blue}}
           >Add card</Button>
-          <Button onPress={() => console.log('Start quiz')}>Start quiz</Button>
+          <Button
+            onPress={() => this.props.navigation.navigate(
+              'Quiz',
+              { deckId: deckId, title: decks[deckId].title }
+            )}
+          >Start quiz</Button>
         </View>
       </View>
     );
