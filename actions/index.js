@@ -38,3 +38,21 @@ export const fetchDecks = () => (dispatch) => {
     .getDecks()
     .then((data) => dispatch(getDecks(data)));
 };
+
+export const ADD_CARD = 'ADD_CARD';
+
+const addCard = (deckId, card) => {
+  return {
+    type: ADD_CARD,
+    payload: {
+      deckId,
+      card,
+    },
+  }
+}
+
+export const saveCard = ({deckId, question, answer}) => (dispatch) => {
+  return api
+    .addCardToDeck({deckId, question, answer})
+    .then((deck) => dispatch(addCard(deckId, {question, answer})));
+}

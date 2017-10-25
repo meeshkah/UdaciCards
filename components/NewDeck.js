@@ -20,8 +20,14 @@ class NewDeck extends Component {
   submitDeckTitle() {
     const { saveDeckTitle } = this.props;
 
+    if (this.state.title === '') {
+      this.setState({title: 'New Deck'});
+      this.refs.decksInput.blur();
+      return;
+    }
+
     saveDeckTitle(this.state.title);
-    this.setState({title: 'New Title'});
+    this.setState({title: 'New Deck'});
     this.refs.decksInput.blur();
   }
 
@@ -34,6 +40,7 @@ class NewDeck extends Component {
           <TextInput
             ref='decksInput'
             style={styles.input}
+            onFocus={() => this.setState((prevState) => ({title: prevState.title !== 'New Deck' ? prevState.title : '' }))}
             onChangeText={(title) => this.setState({title})}
             value={this.state.title}
             onSubmitEditing={() => this.submitDeckTitle()}

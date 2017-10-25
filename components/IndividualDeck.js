@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { 
   Text, 
   StyleSheet,
-  TouchableOpacity,
   View
 } from 'react-native';
 import Button from './Button';
@@ -31,7 +30,10 @@ class IndividualDeck extends Component {
         </View>
         <View style={[styles.center, {flex: 3}]}>
           <Button 
-            onPress={() => console.log('Add card')} 
+            onPress={() => this.props.navigation.navigate(
+              'AddCard',
+              { deckId: deckId }
+            )}
             style={{backgroundColor: white, borderColor: blue, borderWidth: 1, color: blue}}
           >Add card</Button>
           <Button onPress={() => console.log('Start quiz')}>Start quiz</Button>

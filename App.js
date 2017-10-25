@@ -8,6 +8,7 @@ import { Constants } from 'expo';
 import Decks from './components/Decks';
 import NewDeck from './components/NewDeck';
 import IndividualDeck from './components/IndividualDeck';
+import AddCard from './components/AddCard';
 import { blue, white, shadow } from './utils/colors';
 import { reducer } from './reducers';
 import configureStore from './store';
@@ -64,6 +65,15 @@ const MainNavigator = StackNavigator({
   },
   IndividualDeck: {
     screen: IndividualDeck,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: blue,
+      }
+    }
+  },
+  AddCard: {
+    screen: AddCard,
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {

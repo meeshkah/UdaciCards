@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import { 
   ADD_DECK,
   GET_DECKS,
+  ADD_CARD,
 } from '../actions';
 
 const decks = (state = {}, action) => {
@@ -15,6 +16,19 @@ const decks = (state = {}, action) => {
       return {
         ...state,
         ...action.payload.deck,
+      }
+    case ADD_CARD:
+      const questions = state[action.payload.deckId].questions || [];
+      
+      return {
+        ...state,
+        [action.payload.deckId]: {
+          ...state[action.payload.deckId],
+          questions: [
+            ...questions,
+            action.payload.card,
+          ],
+        }
       }
     default:
       return state;
