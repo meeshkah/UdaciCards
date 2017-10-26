@@ -19,6 +19,7 @@ export const saveDeckTitle = (title) => (dispatch) => {
     .then((deck) => {
       // console.log(normalize(deck, deckSchema));
       dispatch(addDeck(deck));
+      return Object.keys(deck)[0];
     });
 };
 

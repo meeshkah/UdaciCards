@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { 
-  Text, 
-  TextInput, 
-  KeyboardAvoidingView, 
+import {
+  Text,
+  TextInput,
+  KeyboardAvoidingView,
   StyleSheet,
   TouchableOpacity,
   View
@@ -17,7 +17,7 @@ class NewDeck extends Component {
     title: 'New Deck',
   }
 
-  submitDeckTitle() {
+  submitDeckTitle = async () => {
     const { saveDeckTitle } = this.props;
 
     if (this.state.title === '') {
@@ -26,9 +26,12 @@ class NewDeck extends Component {
       return;
     }
 
-    saveDeckTitle(this.state.title);
+    const newDeckId = await saveDeckTitle(this.state.title);
     this.setState({title: 'New Deck'});
-    this.refs.decksInput.blur();
+    // this.refs.decksInput.blur();
+    this.props.navigation.navigate('IndividualDeck', {
+      deckId: newDeckId,
+    });
   }
 
   render() {
