@@ -45,7 +45,7 @@ class Quiz extends Component {
   }
 
   render() {
-    const { quiz, deckId, decks, startQuiz, resetQuiz } = this.props;
+    const { quiz, deckId, decks, startQuiz, resetQuiz, navigation } = this.props;
 
     return (
       <View style={{flex: 1}}>
@@ -59,7 +59,16 @@ class Quiz extends Component {
                 onPress={() => startQuiz(deckId)}
                 style={{backgroundColor: white, borderColor: blue, borderWidth: 1, color: blue}}
               >Start new</Button>
-              <Button onPress={() => startQuiz(quiz.deckId)}>Carry on</Button>
+              <Button onPress={() => {
+                startQuiz(quiz.deckId);
+                navigation.navigate(
+                  'Quiz',
+                  {
+                    deckId: quiz.deckId,
+                    title: decks[quiz.deckId].title
+                  }
+                );
+              }}>Carry on</Button>
             </View>
           </View>
         ) : (
