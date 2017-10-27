@@ -30,7 +30,7 @@ class Quiz extends Component {
   }
 
   finishQuiz = async () => {
-    resetQuiz();
+    this.props.resetQuiz();
     await clearLocalNotification();
     await setLocalNotification();
     this.props.navigation.navigate(
@@ -56,7 +56,7 @@ class Quiz extends Component {
   }
 
   render() {
-    const { quiz, deckId, decks, startQuiz, resetQuiz, navigation } = this.props;
+    const { quiz, deckId, decks, startQuiz, navigation } = this.props;
 
     return (
       <View style={{flex: 1}}>
