@@ -13,6 +13,7 @@ import Quiz from './components/Quiz';
 import { blue, white, shadow } from './utils/colors';
 import { reducer } from './reducers';
 import configureStore from './store';
+import { setLocalNotification } from './utils/notifications';
 
 function DecksStatusBar ({backgroundColor, ...props}) {
   return (
@@ -127,6 +128,10 @@ const initialState = {
 const store = configureStore(initialState);
 
 export default class App extends Component {
+  componentDidMount() {
+    setLocalNotification();
+  }
+
   render() {
     return (
       <Provider store={store}>

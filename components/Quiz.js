@@ -8,6 +8,7 @@ import {
 import Button from './Button';
 import { blue, white, grey } from '../utils/colors';
 import { startQuiz, submitAnswer, resetQuiz } from '../actions';
+import { clearLocalNotification, setLocalNotification } from '../utils/notifications';
 
 class Quiz extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -26,6 +27,16 @@ class Quiz extends Component {
     const { deckId, quiz, submitAnswer } = this.props;
 
     submitAnswer({deckId, isCorrect});
+  }
+
+  finishQuiz = async () => {
+    resetQuiz();
+    await clearLocalNotification();
+    await setLocalNotification();
+    this.props.navigation.navigate(
+      'Home',
+      {}
+    );
   }
 
   calculateResult() {
@@ -101,13 +112,7 @@ class Quiz extends Component {
                 <Text style={[styles.deckTitle]}>Your result is {this.calculateResult()}</Text>
               </View>
               <View style={[styles.center, {flex: 3}]}>
-                <Button onPress={() => {
-                  resetQuiz();
-                  this.props.navigation.navigate(
-                    'Home',
-                    {}
-                  );
-                }}>Reset</Button>
+                <Button onPress={() => this.finishQuiz()}>Finish quiz</Button>
               </View>
             </View>
           )
