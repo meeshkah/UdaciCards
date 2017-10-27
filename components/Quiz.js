@@ -5,6 +5,7 @@ import {
   StyleSheet,
   View
 } from 'react-native';
+import QuizCard from './QuizCard';
 import Button from './Button';
 import { blue, white, grey } from '../utils/colors';
 import { startQuiz, submitAnswer, resetQuiz } from '../actions';
@@ -84,28 +85,13 @@ class Quiz extends Component {
           </View>
         ) : (
           quiz.answers.length < decks[deckId].questions.length ? (
-            <View style={{flex: 1}}>
-              <View style={[styles.center, {flex: 2}]}>
-                <Text style={styles.deckCardsNumber}>{`${quiz.currentCard + 1} / ${decks[deckId].questions.length}`}</Text>
-                <Text style={[styles.deckTitle]}>
-                  {this.state.show === 'question' ?
-                    decks[deckId].questions[quiz.currentCard].question :
-                    decks[deckId].questions[quiz.currentCard].answer
-                  }
-                </Text>
-                <Button
-                  onPress={() => this.setState((prevState) => ({show: prevState.show === 'question' ? 'answer' : 'question'}))}
-                  style={{backgroundColor: white, borderColor: blue, borderWidth: 1, color: blue}}
-                >Show {this.state === 'question' ? 'answer' : 'question'}</Button>
-              </View>
-              <View style={[styles.center, {flex: 3}]}>
-                <Button onPress={() => this.submitAnswer(true)}>Correct</Button>
-                <Button
-                  onPress={() => this.submitAnswer(false)}
-                  style={{backgroundColor: white, borderColor: blue, borderWidth: 1, color: blue}}
-                >Incorrect</Button>
-              </View>
-            </View>
+            <QuizCard
+              decks={decks}
+              deckId={deckId}
+              quiz={quiz}
+              onCorrect={() => this.submitAnswer(true)}
+              onIncorrect={() => this.submitAnswer(false)}
+            />
           ) : (
             <View style={{flex: 1}}>
               <View style={[styles.center, {flex: 2}]}>
