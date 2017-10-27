@@ -6,7 +6,8 @@ import {
   KeyboardAvoidingView,
   StyleSheet,
   TouchableOpacity,
-  View
+  View,
+  Platform
 } from 'react-native';
 import Button from './Button';
 import { blue, white, grey } from '../utils/colors';
@@ -67,13 +68,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   input: {
-    borderWidth: 1,
-    borderRadius: 8,
+    borderWidth: Platform.OS === 'ios' ? 1 : 0,
+    borderRadius: Platform.OS === 'ios' ? 8 : 1,
     borderColor: grey,
     padding: 5,
     height: 50,
     fontSize: 28,
-    backgroundColor: white,
+    backgroundColor: Platform.OS === 'ios' ? white : 'transparent',
     color: blue,
     marginTop: 18,
   }

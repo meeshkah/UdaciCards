@@ -1,8 +1,9 @@
 import React from 'react';
-import { 
-  StyleSheet, 
-  Text, 
-  TouchableOpacity 
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  Platform,
 } from 'react-native';
 import { blue, white } from '../utils/colors';
 
@@ -19,7 +20,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     backgroundColor: blue,
     color: white,
-    borderRadius: 8,
+    borderRadius: Platform.OS === 'ios' ? 8 : 1,
     overflow: 'hidden',
     fontSize: 24,
     padding: 10,

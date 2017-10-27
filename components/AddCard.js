@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { 
-  Text, 
-  TextInput, 
-  KeyboardAvoidingView, 
+import {
+  Text,
+  TextInput,
+  KeyboardAvoidingView,
   StyleSheet,
-  View
+  View,
+  Platform,
 } from 'react-native';
 import Button from './Button';
 import { blue, white, grey } from '../utils/colors';
@@ -61,6 +62,11 @@ class AddCard extends Component {
           <TextInput
             ref='cardQuestion'
             style={styles.input}
+            onBlur={() => {
+              if (this.state.question === '') {
+                this.setState({question: 'Enter question'});
+              }
+            }}
             onChangeText={(question) => this.setState({question})}
             onFocus={() => this.setState((prevState) => ({question: prevState.question !== 'Enter question' ? prevState.question : '' }))}
             value={this.state.question}
@@ -72,6 +78,11 @@ class AddCard extends Component {
           <TextInput
             ref='cardAnswer'
             style={styles.input}
+            onBlur={() => {
+              if (this.state.answer === '') {
+                this.setState({answer: 'Enter answer'});
+              }
+            }}
             onChangeText={(answer) => this.setState({answer})}
             onFocus={() => this.setState((prevState) => ({answer: prevState.answer !== 'Enter answer' ? prevState.answer : '' }))}
             value={this.state.answer}
@@ -96,13 +107,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   input: {
-    borderWidth: 1,
-    borderRadius: 8,
+    borderWidth: Platform.OS === 'ios' ? 1 : 0,
+    borderRadius: Platform.OS === 'ios' ? 8 : 1,
     borderColor: grey,
     padding: 5,
     height: 50,
     fontSize: 28,
-    backgroundColor: white,
+    backgroundColor: Platform.OS === 'ios' ? white : 'transparent',
     color: blue,
     marginTop: 18,
   }
