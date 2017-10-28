@@ -9,7 +9,7 @@ import {
   Platform,
 } from 'react-native';
 import Button from './Button';
-import { blue, white, grey } from '../utils/colors';
+import { center, input, title } from '../styles';
 import { saveCard } from '../actions';
 
 class AddCard extends Component {
@@ -58,7 +58,7 @@ class AddCard extends Component {
     return (
       <KeyboardAvoidingView behavior='padding' style={styles.center}>
         <View style={styles.center}>
-          <Text style={styles.deckTitle}>Add card</Text>
+          <Text style={styles.title}>Add card</Text>
           <TextInput
             ref='cardQuestion'
             style={styles.input}
@@ -96,27 +96,9 @@ class AddCard extends Component {
 }
 
 const styles = StyleSheet.create({
-  center: {
-    flex: 1,
-    justifyContent: 'center',
-    padding: 20,
-  },
-  deckTitle: {
-    fontSize: 36,
-    color: blue,
-    textAlign: 'center',
-  },
-  input: {
-    borderWidth: Platform.OS === 'ios' ? 1 : 0,
-    borderRadius: Platform.OS === 'ios' ? 8 : 1,
-    borderColor: grey,
-    padding: 5,
-    height: 50,
-    fontSize: 28,
-    backgroundColor: Platform.OS === 'ios' ? white : 'transparent',
-    color: blue,
-    marginTop: 18,
-  }
+  center,
+  input,
+  title,
 });
 
 const mapStateToProps = ({ decksIds, decks }, { navigation }) => {

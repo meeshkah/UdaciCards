@@ -6,6 +6,7 @@ import {
   View
 } from 'react-native';
 import Button from './Button';
+import { center, deckCardsNumber, title } from '../styles';
 import { blue, white, grey } from '../utils/colors';
 
 class IndividualDeck extends Component {
@@ -25,7 +26,7 @@ class IndividualDeck extends Component {
     return (
       <View style={{flex: 1}}>
         <View style={[styles.center, {flex: 2}]}>
-          <Text style={styles.deckTitle}>{deck.title}</Text>
+          <Text style={styles.title}>{deck.title}</Text>
           <Text style={styles.deckCardsNumber}>{`${cardsNumber} card${cardsNumber !== 1 ? 's' : ''}`}</Text>
         </View>
         <View style={[styles.center, {flex: 3}]}>
@@ -51,21 +52,9 @@ class IndividualDeck extends Component {
 }
 
 const styles = StyleSheet.create({
-  center: {
-    flex: 1,
-    justifyContent: 'center',
-    padding: 20,
-  },
-  deckTitle: {
-    fontSize: 36,
-    color: blue,
-    textAlign: 'center',
-  },
-  deckCardsNumber: {
-    fontSize: 24,
-    color: grey,
-    textAlign: 'center',
-  },
+  center,
+  deckCardsNumber,
+  title,
 });
 
 const mapStateToProps = ({ decks, quiz }, { navigation }) => {

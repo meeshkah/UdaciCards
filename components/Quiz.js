@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import QuizCard from './QuizCard';
 import Button from './Button';
-import { blue, white, grey } from '../utils/colors';
+import { center, deckCardsNumber, title } from '../styles';
 import { startQuiz, submitAnswer, resetQuiz } from '../actions';
 import { clearLocalNotification, setLocalNotification } from '../utils/notifications';
 
@@ -18,10 +18,6 @@ class Quiz extends Component {
     return {
       title: `Quiz on ${title}`,
     }
-  }
-
-  state = {
-    show: 'question',
   }
 
   submitAnswer(isCorrect) {
@@ -64,12 +60,12 @@ class Quiz extends Component {
         {quiz.deckId && quiz.deckId !== deckId ? (
           <View style={{flex: 1}}>
             <View style={[styles.center, {flex: 2}]}>
-              <Text style={[styles.deckTitle]}>There is already an ongoing test. Would you like to carry on with it?</Text>
+              <Text style={[styles.title]}>There is already an ongoing test. Would you like to carry on with it?</Text>
             </View>
             <View style={[styles.center, {flex: 3}]}>
               <Button
                 onPress={() => startQuiz(deckId)}
-                style={{backgroundColor: white, borderColor: blue, borderWidth: 1, color: blue}}
+                type='white'
               >Start new</Button>
               <Button onPress={() => {
                 startQuiz(quiz.deckId);
@@ -95,7 +91,7 @@ class Quiz extends Component {
           ) : (
             <View style={{flex: 1}}>
               <View style={[styles.center, {flex: 2}]}>
-                <Text style={[styles.deckTitle]}>Your result is {this.calculateResult()}</Text>
+                <Text style={[styles.title]}>Your result is {this.calculateResult()}</Text>
               </View>
               <View style={[styles.center, {flex: 3}]}>
                 <Button onPress={() => this.finishQuiz()}>Finish quiz</Button>
@@ -109,21 +105,9 @@ class Quiz extends Component {
 }
 
 const styles = StyleSheet.create({
-  center: {
-    flex: 1,
-    justifyContent: 'center',
-    padding: 20,
-  },
-  deckTitle: {
-    fontSize: 36,
-    color: blue,
-    textAlign: 'center',
-  },
-  deckCardsNumber: {
-    fontSize: 24,
-    color: grey,
-    textAlign: 'center',
-  },
+  center,
+  deckCardsNumber,
+  title,
 });
 
 const mapStateToProps = ({ decks, quiz }, { navigation }) => {

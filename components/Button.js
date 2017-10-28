@@ -5,27 +5,28 @@ import {
   TouchableOpacity,
   Platform,
 } from 'react-native';
-import { blue, white } from '../utils/colors';
+import { button } from '../styles';
 
-const Button = ({ children, onPress, style = {} }) => {
+const Button = ({ children, onPress, type ='', style = {} }) => {
+  const buttonStyle = [
+    styles.default,
+  ];
+
+  if (type === 'white') {
+    buttonStyle.push(styles.white);
+  }
+  buttonStyle.push(style);
+
   return (
     <TouchableOpacity onPress={onPress}>
-      <Text style={[styles.default, style]}>{children}</Text>
+      <Text style={buttonStyle}>{children}</Text>
     </TouchableOpacity>
   )
 }
 
 const styles = StyleSheet.create({
-  default: {
-    textAlign: 'center',
-    backgroundColor: blue,
-    color: white,
-    borderRadius: Platform.OS === 'ios' ? 8 : 1,
-    overflow: 'hidden',
-    fontSize: 24,
-    padding: 10,
-    marginTop: 12,
-  }
+  default: button.default,
+  white: button.white,
 })
 
 export default Button;

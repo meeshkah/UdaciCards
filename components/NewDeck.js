@@ -6,11 +6,10 @@ import {
   KeyboardAvoidingView,
   StyleSheet,
   TouchableOpacity,
-  View,
-  Platform
+  View
 } from 'react-native';
 import Button from './Button';
-import { blue, white, grey } from '../utils/colors';
+import { center, input, title } from '../styles';
 import { saveDeckTitle } from '../actions';
 
 class NewDeck extends Component {
@@ -29,7 +28,6 @@ class NewDeck extends Component {
 
     const newDeckId = await saveDeckTitle(this.state.title);
     this.setState({title: 'New Deck'});
-    // this.refs.decksInput.blur();
     this.props.navigation.navigate('IndividualDeck', {
       deckId: newDeckId,
     });
@@ -40,7 +38,7 @@ class NewDeck extends Component {
     return (
       <KeyboardAvoidingView behavior='padding' style={styles.center}>
         <View>
-          <Text style={styles.heading}>What is the title of your new deck?</Text>
+          <Text style={styles.title}>What is the title of your new deck?</Text>
           <TextInput
             ref='decksInput'
             style={styles.input}
@@ -57,27 +55,9 @@ class NewDeck extends Component {
 }
 
 const styles = StyleSheet.create({
-  center: {
-    flex: 1,
-    justifyContent: 'center',
-    padding: 20,
-  },
-  heading: {
-    fontSize: 36,
-    color: blue,
-    textAlign: 'center',
-  },
-  input: {
-    borderWidth: Platform.OS === 'ios' ? 1 : 0,
-    borderRadius: Platform.OS === 'ios' ? 8 : 1,
-    borderColor: grey,
-    padding: 5,
-    height: 50,
-    fontSize: 28,
-    backgroundColor: Platform.OS === 'ios' ? white : 'transparent',
-    color: blue,
-    marginTop: 18,
-  }
+  center,
+  input,
+  title,
 });
 
 const mapStateToProps = ({ decksIds, decks }) => {
