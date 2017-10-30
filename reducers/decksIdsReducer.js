@@ -1,7 +1,7 @@
 import {
   ADD_DECK,
   GET_DECKS,
-} from '../actions';
+} from '../actions/types';
 
 const decksIds = (state = [], action) => {
   switch (action.type) {

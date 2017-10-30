@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import Button from './Button';
 import { center, input, title } from '../styles';
-import { saveDeckTitle } from '../actions';
+import { saveDeckTitle } from '../actions/decksActions';
 
 class NewDeck extends Component {
   state = {

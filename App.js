@@ -10,7 +10,7 @@ import NewDeck from './components/NewDeck';
 import IndividualDeck from './components/IndividualDeck';
 import AddCard from './components/AddCard';
 import Quiz from './components/Quiz';
-import { blue, white, shadow } from './utils/colors';
+import { blue, white, shadow } from './styles/colors';
 import { reducer } from './reducers';
 import configureStore from './store';
 import { setLocalNotification } from './utils/notifications';

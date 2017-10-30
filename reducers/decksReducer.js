@@ -2,7 +2,7 @@ import {
   ADD_DECK,
   GET_DECKS,
   ADD_CARD,
-} from '../actions';
+} from '../actions/types';
 
 const decks = (state = {}, action) => {
   switch (action.type) {

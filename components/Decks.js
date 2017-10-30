@@ -7,7 +7,7 @@ import {
   View,
 } from 'react-native';
 import Deck from './Deck';
-import { fetchDecks } from '../actions';
+import { fetchDecks } from '../actions/decksActions';
 
 class Decks extends Component {
   _keyExtractor = (item) => item;

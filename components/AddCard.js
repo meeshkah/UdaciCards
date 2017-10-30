@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import Button from './Button';
 import { center, input, title } from '../styles';
-import { saveCard } from '../actions';
+import { saveCard } from '../actions/decksActions';
 
 class AddCard extends Component {
   static navigationOptions = ({ navigation }) => {

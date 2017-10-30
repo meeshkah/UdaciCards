@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import Button from './Button';
 import { center, deckCardsNumber, title } from '../styles';
-import { blue, white, grey } from '../utils/colors';
+import { blue, white, grey } from '../styles/colors';
 
 class IndividualDeck extends Component {
   static navigationOptions = ({ navigation }) => {

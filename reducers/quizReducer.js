@@ -2,7 +2,7 @@ import {
   RESET_QUIZ,
   START_QUIZ,
   SUBMIT_ANSWER,
-} from '../actions';
+} from '../actions/types';
 
 const quiz = (state = {
   deckId: null,

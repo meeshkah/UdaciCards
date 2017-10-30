@@ -8,7 +8,7 @@ import {
 import QuizCard from './QuizCard';
 import Button from './Button';
 import { center, deckCardsNumber, title } from '../styles';
-import { startQuiz, submitAnswer, resetQuiz } from '../actions';
+import { startQuiz, submitAnswer, resetQuiz } from '../actions/quizActions';
 import { clearLocalNotification, setLocalNotification } from '../utils/notifications';
 
 class Quiz extends Component {
@@ -39,7 +39,6 @@ class Quiz extends Component {
   calculateResult() {
     const { deckId, decks, quiz } = this.props;
     const correctAnswers = quiz.answers.reduce((acc, val) => val ? acc + 1 : acc);
-
 
     return `${correctAnswers > 0 ? Math.floor(correctAnswers / decks[deckId].questions.length * 100) : 0}%`;
   }
